@@ -1,0 +1,278 @@
+\documentclass{ctexart}%ctexbook,ctexrep
+\usepackage{geometry}
+\usepackage{fancyhdr}
+\usepackage{ragged2e}
+\usepackage{fontspec}
+\usepackage{xunicode-addon}
+
+
+% 目录字体设置
+\usepackage{subfigure}
+\usepackage[subfigure]{tocloft}
+\renewcommand{\cftdotsep}{0.5}
+\renewcommand{\cftsecleader}{\cftdotfill{\cftdotsep}} % 目录后一行连续的点
+\renewcommand{\cftsecfont}{\songti \zihao{-4}}
+\renewcommand{\cftsecpagefont}{\songti \zihao{-4}}
+% 目录居中
+\renewcommand*\contentsname{\hfill \heiti \zihao{-3}  目 \qquad 录 \hfill}
+
+\geometry{left=2.5cm,right=2.5cm,top=3.5cm,bottom=2.5cm}
+
+\setCJKfamilyfont{heitibf}[FakeBold]{SimHei}             %使用STXihei华文细黑加粗字体
+\newcommand{\heitibf}{\CJKfamily{heitibf}}
+\setCJKfamilyfont{hwxh}{STXihei}             %使用STXihei华文细黑字体
+\newcommand{\huawenxihei}{\CJKfamily{hwxh}}
+\setCJKfamilyfont{hwxhbf}[FakeBold]{STXihei}             %使用STXihei华文细黑加粗字体
+\newcommand{\huawenxiheibf}{\CJKfamily{hwxhbf}}
+\setCJKfamilyfont{hwxk}{STXingkai}             %使用STXingkai华文行楷字体
+\newcommand{\huawenxingkai}{\CJKfamily{hwxk}}
+
+\newenvironment{abstract1}[0]{}{}%可选参数，默认值为摘要
+{}
+
+%=================设置章节标题格式==================
+\ctexset{
+	section={
+		%format用于设置章节标题全局格式，作用域为标题和编号
+		%字号为小三，字体为黑体，左对齐
+		%+号表示在原有格式下附加格式命令
+		format+ = \zihao{-3} \heiti \justifying \linespread{1.5},
+		%name用于设置章节编号前后的词语
+		%前、后词语用英文状态下,分开
+		%如果没有前或后词语可以不填
+		name = {,\quad },
+		%number用于设置章节编号数字输出格式
+		%输出section编号为中文
+		number = \arabic{section},
+		%beforeskip用于设置章节标题前的垂直间距
+		%ex为当前字号下字母x的高度
+		%基础高度为1.0ex，可以伸展到1.2ex，也可以收缩到0.8ex
+		beforeskip = 1.0ex plus 0.2ex minus .2ex,
+		%afterskip用于设置章节标题后的垂直间距
+		afterskip = 11pt,
+		%aftername用于控制编号和标题之间的格式
+		%\hspace用于增加水平间距
+		aftername = \hspace{0pt}
+	},
+	subsection={
+		format+ = \zihao{4} \heiti \justifying \linespread{1.5},
+		%仅输出subsection编号且为中文
+		number = {\arabic{section}.\arabic{subsection}},
+		name = {,\quad },
+		beforeskip = 7pt,
+		afterskip = 1.0ex plus 0.2ex minus .2ex,
+		aftername = \hspace{0pt}
+	},
+	subsubsection={
+		%设置对齐方式为居中对齐
+		format+ = \zihao{-4} \heiti \justifying \linespread{1.5},
+		%仅输出subsubsection编号，格式为阿拉伯数字，打字机字体
+		number = \arabic{section}.\arabic{subsection}.\arabic{subsubsection},
+		name = {,\quad },
+		beforeskip = 7pt,
+		afterskip = 1.0ex plus 0.2ex minus .2ex,
+		aftername = \hspace{0pt}
+	},
+	paragraph={
+		format = \songti \zihao{-4} \justifying \linespread{1.25},
+		indent={30pt}
+	}
+}
+
+\newenvironment{paar}[0]
+	{\par \songti \zihao{-4}  \justifying \linespread{1.25} \setlength{\parindent}{24pt} }{\par}
+\newenvironment{seq1}[1]
+	{\par \songti \zihao{-4}  \justifying \linespread{1.25} \setlength{\parindent}{24pt} ({#1})  }{\par}
+\newenvironment{seq2}[1]
+	{\par \songti \zihao{-4}  \justifying \linespread{1.25} \setlength{\parindent}{24pt} \textcircled{#1} }{\par}
+\newenvironment{jielun}[0]
+	{\par \heiti \zihao{-3} \center \linespread{1.5} 结\quad 论（设计类为设计总结） \vspace{11pt}\par
+	\songti \zihao{-4} \justifying \linespread{1.25} 
+	}{ \par}
+\newenvironment{wenxian}[0]
+	{\par \heiti \zihao{-3} \center \linespread{1.5} 参\quad 考\quad 文\quad 献 \vspace{11pt}\par
+	\songti \zihao{5} \justifying \linespread{1.25} 
+	}{\par}
+\newenvironment{fulu}[1]
+	{\par \heiti \zihao{-3} \center \linespread{1.5} 附\quad 录\quad #1 \vspace{11pt}\par
+	\par \songti \zihao{-4}  \justifying \linespread{1.25} \setlength{\parindent}{24pt} 
+	}{\par}
+\newenvironment{jilu}[0]
+	{\par \heiti \zihao{-3} \center \linespread{1.5} 修\quad 改\quad 记\quad 录 \vspace{11pt}\par
+	\par \songti \zihao{-4}  \justifying \linespread{1.25} \setlength{\parindent}{24pt} 
+	}{\flushright 记录人（签字）：\qquad \qquad \qquad \\ 指导教师（签字）：\qquad \qquad \qquad \par}	
+\newenvironment{zhixie}[0]
+	{\par \heiti \zihao{-3} \center \linespread{1.5} 致\quad 谢 \vspace{11pt}\par
+	\par \songti \zihao{-4}  \justifying \linespread{1.25} \setlength{\parindent}{24pt} 
+	}{\par}
+ 
+\begin{document}
+	\songti \zihao{-4}
+	~\\
+	\songti \center \zihao{-1}  大连理工大学本科毕业论文（设计）\\
+	\songti \zihao{-4}
+	~\\
+	~\\
+	\huawenxiheibf \zihao{2} \linespread{1.25}  基于相机相应不一致性的来源鉴别研究 \\ 
+	\rmfamily \zihao{3} Source Identification Based on Camera Corresponding Inconsistencies \\
+	\songti \zihao{-4}
+	~\\
+	~\\
+	~\\
+	~\\
+	~\\
+	~\\
+	~\\
+	~\\
+	~\\	
+	\songti \zihao{-3}
+	学院（系）：\underline{\quad \ \, 信通学院\quad \ \,  }  \\
+	专业：\underline{\quad \quad 电子信息工程\quad \quad }    \\
+	学生姓名：\underline{\quad \quad \quad 游轩\quad \quad \quad }      \\
+	学号： \underline{\quad \quad \quad 201981261\quad \quad \quad }    \\
+	指导教师：\underline{\quad \quad \quad 王波\quad \quad \quad }  \\
+	评阅教师：\underline{\quad \quad （待定）\quad \quad }  \\
+	完成日期：\underline{\number\year 年 \number\month 月 \number\day 日}    \\
+	\huawenxingkai \zihao{-2}
+	~\\
+	~\\
+	~\\
+	大连理工大学\\
+	\rmfamily \zihao{-4} Dalian University of Technology
+	\clearpage
+
+	\pagestyle{fancy}
+	\fancyhf{}
+	\fancyhead[CO, CE]{\center \songti \zihao{5} 基于相机相应不一致性的来源鉴别研究}
+	%页眉线宽，设为0可以去页眉线
+	\renewcommand{\headrulewidth}{0.1mm} 
+	\huawenxiheibf \zihao{2} \center 原创性声明 \\
+	\songti \zihao{-3} \justifying \linespread{1.25} 本人郑重声明：本人所呈交的毕业论文（设计），是在指导老师的指导下独立进行研究所取得的成果。毕业论文（设计）中凡引用他人已经发表或未发表的成果、数据、观点等，均已明确注明出处。除文中已经注明引用的内容外，不包含任何其他个人或集体已经发表或撰写过的科研成果。对本文的研究成果做出重要贡献的个人和集体，均已在文中以明确方式标明。\\
+	~\\
+	本声明的法律责任由本人承担。\\
+	~\\
+	~\\
+	作者签名：\quad \quad \quad \quad \quad \quad \quad \quad \quad \quad  日  期：\today
+	\clearpage
+	
+	\huawenxiheibf \zihao{2} \center \linespread{1.5} 关于使用授权的声明 \\ 
+	\vspace{11pt}
+	\songti \zihao{-3} \justifying  \linespread{1.25} 本人在指导老师指导下所完成的毕业论文（设计）及相关的资料（包括图纸、试验记录、原始数据、实物照片、图片、录音带、设计手稿等），知识产权归属大连理工大学。本人完全了解大连理工大学有关保存、使用毕业论文（设计）的规定，本人授权大连理工大学可以将本毕业论文（设计）的全部或部分内容编入有关数据库进行检索，可以采用任何复制手段保存和汇编本毕业论文（设计）。如果发表相关成果，一定征得指导教师同意，且第一署名单位为大连理工大学。本人离校后使用毕业毕业论文（设计）或与该论文直接相关的学术论文或成果时，第一署名单位仍然为大连理工大学。\\
+	~\\
+	~\\
+	论文作者签名：\qquad \qquad \qquad  \qquad \qquad   日  期：\today    \\
+	指导老师签名：\qquad \qquad \qquad  \qquad \qquad   日  期：\today    \\
+	\clearpage
+	
+	\pagenumbering{Roman}
+	\fancyfoot[CO, CE]{\songti \zihao{-5} -\thepage -}
+	\begin{abstract1}
+	\heiti \zihao{-3} \linespread{1.5} \center 摘\qquad 要\\ 	\vspace{11pt}
+	\setlength{\parindent}{24pt}
+	\songti \zihao{-4} \justifying \linespread{1.25} “摘要”是摘要部分的标题，不可省略。\\
+	标题“摘要”选用模板中的样式所定义的“标题1”，再居中；或者手动设置成字体：黑体，居中，字号：小三，1.5倍行距，段后11磅，段前为0。\par 
+	摘要是毕业论文（设计）的缩影，文字要简练、明确。内容要包括目的、方法、结果和结论。单位采用国际标准计量单位制，除特别情况外，数字一律用阿拉伯数码。文中不允许出现插图。重要的表格可以写入。\par 
+	摘要正文选用模板中的样式所定义的“正文”，每段落首行缩进2个汉字；或者手动设置成每段落首行缩进2个汉字，字体：宋体，字号：小四，行距：多倍行距 1.25，间距：段前、段后均为0行，取消网格对齐选项。\par 
+	摘要篇幅以一页为限，字数限500字以内。\par 
+	摘要正文后，列出3-5个关键词。“关键词：”是关键词部分的引导，不可省略。关键词请尽量用《汉语主题词表》等词表提供的规范词。\par 
+	关键词与摘要之间空一行。关键词词间用分号间隔，末尾不加标点，3-5个；黑体，小四，加粗。关键词整体字数限制在一行。\par
+	~\\
+	\heitibf \zihao{-4} \justifying 关键词：写作规范；排版格式；毕业论文（设计）
+	\end{abstract1}
+	\addcontentsline{toc}{section}{摘\qquad 要}\tolerance=500 %将摘要放进目录
+	\clearpage
+	
+	\begin{abstract1}
+	\setmainfont{Times New Roman} \zihao{-3} \bfseries \center \linespread{1.25} Source Identification Based on Camera Corresponding Inconsistencies\\
+	\heiti \zihao{-3} ~\\
+	\setmainfont{Times New Roman} \zihao{-3} \center \linespread{1.5} Abstract\\
+	\vspace{11pt}
+	\setlength{\parindent}{24pt}
+	\setmainfont{Times New Roman} \zihao{-4} \justifying \linespread{1.25} Times New Roman\par
+	Times New RomanTimes New RomanTimes New RomanTimes New RomanTimes New RomanTimes New RomanTimes New RomanTimes New RomanTimes New RomanTimes New RomanTimes New Roman\par 
+	Times New RomanTimes New RomanTimes New RomanTimes New RomanTimes New RomanTimes New RomanTimes New RomanTimes New RomanTimes New Roman\par 
+	~\\
+	\setmainfont{Times New Roman} \zihao{-4} \bfseries \justifying  Key Words：Write Criterion；Typeset Format；Graduation Project (Thesis)
+	\end{abstract1}
+	\addcontentsline{toc}{section}{Abstract}\tolerance=500 %将Abstract放进目录	
+	\clearpage	
+
+	\tableofcontents
+	\clearpage
+
+	\pagenumbering{arabic}
+	\setcounter{page}{1}	
+	\fancyfoot[CO,CE]{\songti \zihao{-5}-\thepage -}
+	\begin{abstract1}
+	\heiti \zihao{-3} \center \linespread{1.5} 引 \qquad 言\\
+	\vspace{1ex}
+	\songti \zihao{-4} \justifying \linespread{1.25}
+	理工文科所有专业本科生的毕业论文（设计）都应有“引言”的内容。如果引言部分省略，该部分内容在正文中单独成章，标题改为文献综述，用足够的文字叙述。从引言开始，是正文的起始页，页码从1开始顺序编排。\par
+	针对做毕业设计：说明毕业设计的方案理解，阐述设计方法和设计依据，讨论对设计重点的理解和解决思路。\par
+	针对做毕业论文：说明论文的主题和选题的范围；对本论文研究主要范围内已有文献的评述；说明本论文所要解决的问题。建议与相关历史回顾、前人工作的文献评论、理论分析等相结合。
+注意：是否如实引用前人结果反映的是学术道德问题，应明确写出同行相近的和已取得的成果，避免抄袭之嫌。注意不要与摘要内容雷同。\par
+	书写格式说明：\par
+	标题“引言”选用模板中的样式所定义的“引言”；或者手动设置成字体：黑体，居中，字号：小三，1.5倍行距，段后1行，段前为0行。\par
+	引言的字数在3000字左右（毕业设计类引言可适当调整为800字左右）。引言正文选用模板中的样式所定义的“正文”，每段落首行缩进2字；或者手动设置成每段落首行缩进2字，宋体，小四，多倍行距 1.25，段前、段后均为0行，取消网格对齐选项。\par
+	\end{abstract1}
+	\addcontentsline{toc}{section}{引 \qquad 言}\tolerance=500 %将引 \qquad 言放进目录
+	\clearpage
+	
+	\section{正文格式说明}
+	正文是毕业论文（设计）的主体，是毕业论文或工程设计说明书的核心部分。要求学生运用所学的数学、自然科学、工程基础和专业知识解决复杂问题的能力，能够针对问题设计解决方案，在设计环节中体现创新意识，并考虑社会、健康、安全、法律、文化、环境以及社会可持续发展等因素；要着重反映毕业设计或论文的工作，要突出毕业设计的设计过程、设计依据及解决问题的方法；毕业论文重点要突出研究的新见解，例如新思想、新观点、新规律、新研究方法以及新结果等。\par
+	\subsection{hello你好啊world}
+	\subsubsection{h你好啊i}
+	%\paragraph{nihao\\}
+
+	\begin{paar}
+		新时代青年\\dfsdsfsdfdswe的第三方对手的防守的发射点上的\\
+	\end{paar}
+	\begin{seq2}{1}
+	新时代新青年
+	\end{seq2}
+	\begin{paar}
+		新时代青年\\dfsdsfsdfdswe的第三方对手的防守的发射点上的\\
+	\end{paar}	
+	\begin{seq1}{2}
+	新时代新青年
+	\end{seq1}
+	\begin{seq2}{3}
+	新时代新青年
+	\end{seq2}
+	\begin{seq2}{4}
+	新时代新青年
+	\end{seq2}
+	\section{sophi你好啊e}
+	\subsection{benea你好啊th}
+	\subsubsection{grou你好啊nd}
+	
+	\clearpage
+	
+	\begin{jielun}
+	
+	\end{jielun}
+	\addcontentsline{toc}{section}{结 \qquad 论}\tolerance=500 %将结 \qquad 论放进目录
+	\clearpage
+	
+	\begin{wenxian}
+	
+	\end{wenxian}
+	\addcontentsline{toc}{section}{参\quad 考\quad 文\quad 献}\tolerance=500 %将参\quad 考\quad 文\quad 献放进目录
+	\clearpage
+	
+	\begin{fulu}{A}
+	
+	\end{fulu}
+	\addcontentsline{toc}{section}{附录A\quad 附录内容名称 }\tolerance=500 %将附\qquad 录\qquad A放进目录
+	\clearpage
+	
+	\begin{jilu}
+	
+	\end{jilu}
+	\addcontentsline{toc}{section}{修改记录}\tolerance=500 %将修\qquad 改\qquad 记\qquad 录放进目录
+	\clearpage
+	\begin{zhixie}
+	
+	\end{zhixie}
+	\addcontentsline{toc}{section}{致\qquad 谢}\tolerance=500 %将致\qquad 谢放进目录
+\end{document}
